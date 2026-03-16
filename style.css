@@ -1,0 +1,125 @@
+
+:root{
+    --menu: hsl(214, 84%, 20%) ;
+    --font-menu:hsl(210, 40%, 96%);
+    --kontrast-glass:  hsl(213, 94%, 68%);
+    --button: hsl(188, 86%, 53%);
+    --button-pochodnia: hsl(189, 94%, 43%);
+    --info-bar :hsl(214, 50%, 53%);
+   --card-color:hsl(214, 84%, 20%);
+   --win-message: hsl(213, 70%, 39%);
+    --card-width: 120px;
+    --card-height: 160px;
+    --gap: 16px;
+    --border-radius: 12px;
+    --transition: 0.6s;
+    --font: 'Poppins', sans-serif;
+    --shadow: 4px 8px 16px rgba(0, 0, 0, 0.4);
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    background-color: hsl(215, 26%, 29%);
+  text-align: center;
+  font-family: var(--font);
+  color:var(--font-menu)   
+}
+
+#start-screen{
+ background: var(--menu);
+ backdrop-filter: blur(10px);
+ border:1px solid rgba(255, 255, 255, 0.2);
+ border-radius: var(--border-radius);
+  margin: 300px auto;
+    padding: 40px;
+    max-width: 1000px;
+    max-height: 600px;
+}
+
+h1{
+    font-size:2em;
+    color:var(--font-menu);
+   margin-bottom: var(--gap);
+}
+
+h2{
+     font-size:1.5em;
+    color:var(--font-menu);
+   margin-bottom: var(--gap);
+}
+.diffBtn {
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 20px;
+    color: var(--font-menu);
+    padding: 10px 20px;
+    margin: 8px;
+    cursor: pointer;
+    font-family: var(--font);
+}
+
+.diffBtn:hover {
+    background: var(--button);
+    color: white;
+}
+
+#info-bar{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+     backdrop-filter: blur(10px);
+    border:1px solid rgba(255, 255, 255, 0.2);
+     border-radius: var(--border-radius);
+    background-color: var(--info-bar);
+    margin: 50px auto;
+    padding: 15px 40px;
+    max-width: 300px;
+}
+#timer, #tries {
+    font-size: 1.1em;
+    font-weight: 600;
+    color: var(--font-menu);
+}
+
+#game-grid{
+    display: grid ;
+    grid-template-columns: repeat(4, 1fr);
+    gap:var(--gap);
+    margin:20px auto;
+    max-width:600px;
+    padding:20px
+}
+.card{
+
+}
+
+.card-inner{
+
+}
+.card-front{
+
+}
+
+.card-back{
+
+}
+
+.flipped{
+
+}
+
+.matched{
+
+}
+
+#win-message{
+
+}
+
+.hidden{
+    display: none;
+}

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pl-PL">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <title>Zs3-memory gra</title>
+</head>
+<body>
+ 
+   <div id="start-screen">
+     <h1>Zagraj w grę Memory</h1><br>
+    <h2>Wybierz poziom trudności</h2><br>
+    <button class="diffBtn" data-size="4">4x4 — Łatwy (16 kart)</button>
+    <button class="diffBtn" data-size="5">5x5 — Średni (25 kart)</button>
+    <button class="diffBtn" data-size="6">6x6 — Trudny (36 kart)</button>
+</div>
+
+    <div id="info-bar" class="hidden">
+        <div id="timer">Czas: 0s</div>
+        <div id="tries">Próby: 0</div>
+    </div>
+
+    <div id="game-grid" class="hidden" ></div>
+
+   <div id="win-message" class="hidden">
+    <h2>Wygrałeś! 🎉</h2>
+    <p id="win-time">Czas: </p>
+    <p id="win-tries">Próby: </p>
+    <button id="restartBtn">Zagraj ponownie</button>
+</div>
+
+    <script src="script.js"></script>
+</body>
+</html>
