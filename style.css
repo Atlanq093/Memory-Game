@@ -66,7 +66,20 @@ h2{
     background: var(--button);
     color: white;
 }
-
+#restartBtn{
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 20px;
+    color: var(--font-menu);
+    padding: 10px 20px;
+    margin: 8px;
+    cursor: pointer;
+    font-family: var(--font);
+}
+#restartBtn:hover {
+    background: var(--button);
+    color: white;
+}
 #info-bar{
     display: flex;
     justify-content: space-around;
@@ -109,8 +122,8 @@ h2{
     width: 100%;
     height: 100%;
     transform-style: preserve-3d;
-  transform: var(--transition);
-  position: relative;
+    transition: transform var(--transition);
+    position: relative;
 }
 .card-front,.card-back{
     position: absolute;
@@ -131,7 +144,7 @@ h2{
 
 }
 
-.matched{
+.matched .card-inner {
 border: 3px solid gold;
     box-shadow: 0 0 10px gold;
 }
