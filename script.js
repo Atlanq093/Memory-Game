@@ -42,6 +42,7 @@ diffBtns.forEach(btn => {
 //Karty 
 function startGame(size){
     gameGrid.innerHTML = ""
+    
     const cards = [...images, ...images]
     cards.sort(() => 0.5 - Math.random())
     
@@ -81,10 +82,11 @@ function startGame(size){
     flippedCards.push(card)
 
     if (flippedCards.length === 2) {
+        
         tries++
-        triesEl.textContent = tries
+          triesEl.innerHTML = `Próby: ${tries}`
 
-        const [firstCard, secondCard] = flippedCards;  //destrution
+        const [firstCard, secondCard] = flippedCards;  
 
         if (firstCard.dataset.value === secondCard.dataset.value) {
             firstCard.querySelector('.card-inner').classList.add('matched')
