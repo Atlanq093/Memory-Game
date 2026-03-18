@@ -84,7 +84,7 @@ function startGame(size){
         tries++
         triesEl.textContent = tries
 
-        const [firstCard, secondCard] = flippedCards;
+        const [firstCard, secondCard] = flippedCards;  //destrution
 
         if (firstCard.dataset.value === secondCard.dataset.value) {
             firstCard.querySelector('.card-inner').classList.add('matched')
