@@ -72,24 +72,32 @@ function startGame(size){
         card.appendChild(cardInner)
         gameGrid.appendChild(card)
 
+//Mechanika gry
+        card.addEventListener('click', () => {
+    const cardInner = card.querySelector('.card-inner');
+    if (cardInner.classList.contains('flipped') || cardInner.classList.contains('matched') || flippedCards.length === 2) return;
 
-          card.addEventListener('click', () => {
-            cardInner.classList.add(`flipped`)
-              flippedCards.push(card)
-              if(flippedCards.length === 2){
-        if(flippedCards[0].dataset.value === flippedCards[1].dataset.value){
-        flippedCards[0].querySelector('.card-inner').classList.add('matched')
-        flippedCards[1].querySelector('.card-inner').classList.add('matched')
-        flippedCards = []
+    cardInner.classList.add('flipped')
+    flippedCards.push(card)
 
-} else {
-    setTimeout(()=>{;
-        flippedCards[0].querySelector('.card-inner').classList.remove('flipped')
-        flippedCards[1].querySelector('.card-inner').classList.remove('flipped')
-         flippedCards = []
-    },1000)
-}
+    if (flippedCards.length === 2) {
+        tries++
+        triesEl.textContent = tries
+
+        const [firstCard, secondCard] = flippedCards;
+
+        if (firstCard.dataset.value === secondCard.dataset.value) {
+            firstCard.querySelector('.card-inner').classList.add('matched')
+            secondCard.querySelector('.card-inner').classList.add('matched')
+            flippedCards = []
+        } else {
+            setTimeout(() => {
+                firstCard.querySelector('.card-inner').classList.remove('flipped')
+                secondCard.querySelector('.card-inner').classList.remove('flipped')
+                flippedCards = []
+            }, 800)
+        }
     }
-        })
+})
     })
 }
