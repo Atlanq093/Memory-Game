@@ -31,7 +31,7 @@ let boardSize = 4
 //Button 
 diffBtns.forEach(btn => {
     btn.addEventListener('click', () => {
-        boardSize = btn.dataset.size
+        boardSize = parseInt(btn.dataset.size)
         startScreen.classList.add('hidden')
         gameGrid.classList.remove('hidden')
         infoBar.style.display = 'flex'
@@ -75,7 +75,6 @@ function startGame(size){
         cardInner.appendChild(cardBack)
         card.appendChild(cardInner)
         gameGrid.appendChild(card)
-         seconds = 120
 //Mechanika gry
     card.addEventListener('click', () => {
             const inner = card.querySelector('.card-inner')
@@ -92,8 +91,8 @@ function startGame(size){
 
     // === TIMER ===
     clearInterval(timerInterval)
-    seconds = 60
-    timerEl.innerHTML = `Czas: ${seconds}s`
+    const totalTime = 60
+    timerEl.innerHTML = `Czas: ${totalTime - seconds}s`
     timerInterval = setInterval(() => {
         seconds--
         timerEl.innerHTML = `Czas: ${seconds}s`
