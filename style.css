@@ -81,7 +81,6 @@ h2{
     color: white;
 }
 #info-bar{
-    display: flex;
     justify-content: space-around;
     align-items: center;
      backdrop-filter: blur(10px);
@@ -89,13 +88,15 @@ h2{
      border-radius: var(--border-radius);
     background-color: var(--info-bar);
     margin: 50px auto;
-    padding: 15px 40px;
-    max-width: 300px;
+    padding: 15px 90px;
+    max-width: 500px;
+    
 }
 #timer, #tries {
     font-size: 1.1em;
     font-weight: 600;
     color: var(--font-menu);
+    
 }
 
 #game-grid{
@@ -106,6 +107,7 @@ h2{
     max-width:700px;
     padding:20px
 }
+
 .card{
    height: var(--card-height);
     width: var(--card-width);
@@ -167,14 +169,37 @@ background: var(--win-message);
  border:1px solid rgba(255, 255, 255, 0.2);
  border-radius: var(--border-radius);
   margin: 300px auto;
-    padding: 40px;
-    max-width: 400px;
+    padding: 60px;
+     font-size: 1.2em;
+    width: 500px;
+    height: 350px;
     position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%)
+    top: 20%;
+    left: 50%;;
+    transform: translate(-50%, -50%);
+    z-index: 100;
+    align-items: center;
+    justify-content: center;
+}
+#win-message h2 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
 }
 
+#win-message p {
+    font-size: 1.3em;
+    margin-bottom: 10px;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding: 20px;
+    color: var(--font-menu);
+    font-size: 0.9em;
+    opacity: 0.7;
+}
 .hidden{
     display: none;
 }

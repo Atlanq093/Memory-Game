@@ -33,8 +33,8 @@ diffBtns.forEach(btn => {
     btn.addEventListener('click', () => {
         boardSize = btn.dataset.size
         startScreen.classList.add('hidden')
-        infoBar.classList.remove('hidden')
         gameGrid.classList.remove('hidden')
+        infoBar.style.display = 'flex'
         startGame(boardSize)
     })
 })
@@ -92,7 +92,7 @@ function startGame(size){
 
     // === TIMER ===
     clearInterval(timerInterval)
-    seconds = 120
+    seconds = 60
     timerEl.innerHTML = `Czas: ${seconds}s`
     timerInterval = setInterval(() => {
         seconds--
@@ -133,6 +133,14 @@ function checkWin() {
     )
     if (allMatched) {
         clearInterval(timerInterval)
-        // TODO: pokaż win message
+    winTimeEl.innerHTML = `Czas: ${60 - seconds}s`
+    winTriesEl.innerHTML = `Próby: ${tries}`
+    gameGrid.style.visibility = 'hidden'
+    infoBar.style.visibility = 'hidden'
+    gameGrid.style.opacity = '0'
+    winMessage.classList.remove('hidden')
+    
+      
+        
     }
 }
