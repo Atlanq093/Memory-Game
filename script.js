@@ -41,11 +41,14 @@ diffBtns.forEach(btn => {
 
 //Karty 
 function startGame(size){
-    gameGrid.innerHTML = ""
+    gameGrid.innerHTML = "";
+    flippedCards = [];
+    tries = 0;
+    triesEl.innerHTML = `Próby: 0`;
     
-    const cards = [...images, ...images]
+     const cards = [...images, ...images] //shuffle method 
     cards.sort(() => 0.5 - Math.random())
-    
+    //Tworzenie kart
     cards.forEach(value => {
         const card = document.createElement("div")
         card.classList.add("card")
@@ -66,40 +69,70 @@ function startGame(size){
 
         const img = document.createElement("img")
         img.src = value
-
+  //Składanie kart 
         cardBack.appendChild(img)
         cardInner.appendChild(cardFront)
         cardInner.appendChild(cardBack)
         card.appendChild(cardInner)
         gameGrid.appendChild(card)
-
+         seconds = 120
 //Mechanika gry
-        card.addEventListener('click', () => {
-    const cardInner = card.querySelector('.card-inner');
-    if (cardInner.classList.contains('flipped') || cardInner.classList.contains('matched') || flippedCards.length === 2) return;
+    card.addEventListener('click', () => {
+            const inner = card.querySelector('.card-inner')
+            if (inner.classList.contains('flipped') || inner.classList.contains('matched') || flippedCards.length === 2) return
 
-    cardInner.classList.add('flipped')
-    flippedCards.push(card)
+            inner.classList.add('flipped')
+            flippedCards.push(card)
 
-    if (flippedCards.length === 2) {
-        
-        tries++
-          triesEl.innerHTML = `Próby: ${tries}`
-
-        const [firstCard, secondCard] = flippedCards;  
-
-        if (firstCard.dataset.value === secondCard.dataset.value) {
-            firstCard.querySelector('.card-inner').classList.add('matched')
-            secondCard.querySelector('.card-inner').classList.add('matched')
-            flippedCards = []
-        } else {
-            setTimeout(() => {
-                firstCard.querySelector('.card-inner').classList.remove('flipped')
-                secondCard.querySelector('.card-inner').classList.remove('flipped')
-                flippedCards = []
-            }, 800)
-        }
-    }
-})
+            if (flippedCards.length === 2) {
+                checkMatch()
+            }
+        })
     })
+
+    // === TIMER ===
+    clearInterval(timerInterval)
+    seconds = 120
+    timerEl.innerHTML = `Czas: ${seconds}s`
+    timerInterval = setInterval(() => {
+        seconds--
+        timerEl.innerHTML = `Czas: ${seconds}s`
+        if (seconds === 0) {
+            clearInterval(timerInterval)
+            // game over - TODO
+        }
+    }, 1000)
+}
+
+// === SPRAWDZANIE DOPASOWANIA ===
+function checkMatch() {
+    tries++
+    triesEl.innerHTML = `Próby: ${tries}`
+
+    const [first, second] = flippedCards
+
+    if (first.dataset.value === second.dataset.value) {
+        first.querySelector('.card-inner').classList.add('matched')
+        second.querySelector('.card-inner').classList.add('matched')
+        flippedCards = []
+        checkWin()
+    } else {
+        setTimeout(() => {
+            first.querySelector('.card-inner').classList.remove('flipped')
+            second.querySelector('.card-inner').classList.remove('flipped')
+            flippedCards = []
+        }, 800)
+    }
+}
+
+// === SPRAWDZANIE WYGRANEJ ===
+function checkWin() {
+    const allCards = gameGrid.querySelectorAll('.card')
+    const allMatched = [...allCards].every(card =>
+        card.querySelector('.card-inner').classList.contains('matched')
+    )
+    if (allMatched) {
+        clearInterval(timerInterval)
+        // TODO: pokaż win message
+    }
 }
