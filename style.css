@@ -190,7 +190,33 @@ background: var(--win-message);
     font-size: 1.3em;
     margin-bottom: 10px;
 }
+#game-over{
+background: var(--win-message);
+ backdrop-filter: blur(12px);
+ border:1px solid rgba(255, 255, 255, 0.2);
+ border-radius: var(--border-radius);
+  margin: 300px auto;
+    padding: 60px;
+     font-size: 1.2em;
+    width: 500px;
+    height: 350px;
+    position: fixed;
+    top: 20%;
+    left: 50%;;
+    transform: translate(-50%, -50%);
+    z-index: 100;
+    align-items: center;
+    justify-content: center;
+}
+#game-over h2 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+}
 
+#game-over p {
+    font-size: 1.3em;
+    margin-bottom: 10px;
+}
 footer {
     position: absolute;
     bottom: 0;

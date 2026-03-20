@@ -89,29 +89,24 @@ function startGame(size){
         })
     })
 
-    // === TIMER ===
+    //TIMER 
     clearInterval(timerInterval)
-    const totalTime = 60
-    timerEl.innerHTML = `Czas: ${totalTime - seconds}s`
+    seconds= 60
+    timerEl.innerHTML = `Czas: ${seconds}s`
     timerInterval = setInterval(() => {
         seconds--
         timerEl.innerHTML = `Czas: ${seconds}s`
         if (seconds === 0) {
             clearInterval(timerInterval)
-            innercard.classList.remove('flipped')
-            flippedCards.push(card)
-              const photo = document.createElement("img")
-              photo.src = "gameover.gif" // albo .png / .jpg
-              photo.style.width = "200px"
-             const container = document.getElementById("game-over-container")
-            container.innerHTML = "" // czyści stare rzeczy
-            container.appendChild(photo)
+            gameGrid.style.visibility = 'hidden'
+    infoBar.style.visibility = 'hidden'
+    document.getElementById('game-over').classList.remove('hidden')
             
         }
     }, 1000)
 }
 
-// === SPRAWDZANIE DOPASOWANIA ===
+// SPRAWDZANIE DOPASOWANIA 
 function checkMatch() {
     tries++
     triesEl.innerHTML = `Próby: ${tries}`
@@ -149,13 +144,25 @@ function checkWin() {
     }
 }
 
-restartBtn.forEach(btn => {
-    btn.addEventListener('click', () => {
-        boardSize = parseInt(btn.dataset.size)
-        startScreen.classList.remove('hidden')
-        gameGrid.classList.add('hidden')
-        infoBar.style.display = 'flex'
-        startGame(boardSize)
-    })
+restartBtn.addEventListener('click', () => {
+    winMessage.classList.add('hidden')
+    gameGrid.classList.add('hidden')
+    infoBar.style.display = 'none'
+    startScreen.classList.remove('hidden')
+    flippedCards = []
+    tries = 0
+    seconds = 0
+    clearInterval(timerInterval)
 })
 
+//game-over restart
+document.getElementById('restartBtnGameOver').addEventListener('click', () => {
+    document.getElementById('game-over').classList.add('hidden')
+    gameGrid.style.visibility = 'visible'
+    infoBar.style.display = 'none'
+    startScreen.classList.remove('hidden')
+    flippedCards = []
+    tries = 0
+    seconds = 0
+    clearInterval(timerInterval)
+})
