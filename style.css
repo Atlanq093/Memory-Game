@@ -94,8 +94,8 @@ h2{
     font-family: var(--font);
     font-size: 1.5rem;
 }
-#restartBtnGameOver{
-    background: var(--button --button-pochodnia);
+#restartBtnGameOver:hover{
+    background: var(--button-pochodnia);
     color: white;
 }
 #info-bar{
