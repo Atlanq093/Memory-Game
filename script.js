@@ -1,4 +1,3 @@
-
 const startScreen = document.getElementById('start-screen')
 const infoBar = document.getElementById('info-bar')
 const gameGrid = document.getElementById('game-grid')
@@ -31,14 +30,17 @@ const images = [
     "imagines/img19.png",
     "imagines/img20.png",
 ]
-let scores = []
-const playerName = document.getElementById('playerName')
+
 // === ZMIENNE GRY ===
 let flippedCards = []
 let tries = 0
 let seconds = 0
 let timerInterval = null
 let boardSize = 4
+let scores = []
+const saved = localStorage.getItem('scores')
+if(saved) scores = JSON.parse(saved)
+const playerName = document.getElementById('playerName')
 
 
 //Button 
@@ -47,16 +49,14 @@ diffBtns.forEach(btn => {
         boardSize = parseInt(btn.dataset.size)
         startScreen.classList.add('hidden')
         gameGrid.classList.remove('hidden')
-         gameGrid.style.display = 'grid' 
-        infoBar.style.display = 'flex'
+         gameGrid.style.display = 'grid'
+         infoBar.style.display = 'flex'
         startGame(boardSize)
     })
 })
 
 //Karty 
 function startGame(size){
-     console.log('size:', size)
-    console.log('pairsNeeded:', (size * size) / 2)
     gameGrid.innerHTML = "";
     flippedCards = [];
     tries = 0;
@@ -78,7 +78,10 @@ function startGame(size){
     const cards = [...selectedImages, ...selectedImages]
     
     //shuffle method 
-    cards.sort(() => 0.5 - Math.random())
+    for (let i = cards.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [cards[i], cards[j]] = [cards[j], cards[i]];
+}
     //Tworzenie kart
     cards.forEach(value => {
         const card = document.createElement("div")
@@ -158,7 +161,7 @@ function checkMatch() {
     }
 }
 
-// === SPRAWDZANIE WYGRANEJ ===
+// SPRAWDZANIE WYGRANEJ 
 function checkWin() {
     const allCards = gameGrid.querySelectorAll('.card')
     const allMatched = [...allCards].every(card =>
@@ -166,7 +169,7 @@ function checkWin() {
     )
     if (allMatched) {
         clearInterval(timerInterval)
-    winTimeEl.innerHTML = `Czas: ${60 - seconds}s`
+    winTimeEl.innerHTML = `Czas: ${(boardSize === 4 ? 60 : boardSize === 6 ? 150 : 200) - seconds}s`
     winTriesEl.innerHTML = `Próby: ${tries}`
     gameGrid.style.visibility = 'hidden'
     infoBar.style.visibility = 'hidden'
@@ -176,14 +179,14 @@ function checkWin() {
     time: 60 - seconds,
     tries: tries
 })
-      scores.sort((a, b) => a.time - b.time)
-        const list = document.getElementById('leaderboard-list')
-        list.innerHTML = ''
-        scores.slice(0, 5).forEach((s, i) => {
-            list.innerHTML += `<li>${i+1}. ${s.name} — ${s.time}s — ${s.tries} prób</li>`
-        })
+  scores.sort((a, b) => a.time - b.time)
+localStorage.setItem('scores', JSON.stringify(scores))
+const list = document.getElementById('leaderboard-list')
+list.innerHTML = ''
+scores.slice(0, 5).forEach((s, i) => {
+    list.innerHTML += `<li>${i+1}. ${s.name} — ${s.time}s — ${s.tries} prób</li>`
+})
     }
-}
  
 
 
@@ -216,4 +219,4 @@ document.getElementById('restartBtnGameOver').addEventListener('click', () => {
     tries = 0
     seconds = 0
     clearInterval(timerInterval)
-})
+})}
