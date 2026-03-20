@@ -148,3 +148,14 @@ function checkWin() {
     winMessage.classList.remove('hidden')
     }
 }
+
+restartBtn.forEach(btn => {
+    btn.addEventListener('click', () => {
+        boardSize = parseInt(btn.dataset.size)
+        startScreen.classList.remove('hidden')
+        gameGrid.classList.add('hidden')
+        infoBar.style.display = 'flex'
+        startGame(boardSize)
+    })
+})
+
