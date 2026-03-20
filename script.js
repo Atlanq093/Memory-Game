@@ -46,6 +46,7 @@ diffBtns.forEach(btn => {
         boardSize = parseInt(btn.dataset.size)
         startScreen.classList.add('hidden')
         gameGrid.classList.remove('hidden')
+         gameGrid.style.display = 'grid' 
         infoBar.style.display = 'flex'
         startGame(boardSize)
     })
@@ -195,6 +196,7 @@ document.getElementById('restartBtnGameOver').addEventListener('click', () => {
     infoBar.style.visibility = 'visible'
     infoBar.style.display = 'none'
     startScreen.classList.remove('hidden')
+    gameGrid.classList.remove('hidden')
     flippedCards = []
     tries = 0
     seconds = 0
