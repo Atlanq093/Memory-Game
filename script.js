@@ -98,7 +98,15 @@ function startGame(size){
         timerEl.innerHTML = `Czas: ${seconds}s`
         if (seconds === 0) {
             clearInterval(timerInterval)
-            // game over - TODO
+            innercard.classList.remove('flipped')
+            flippedCards.push(card)
+              const photo = document.createElement("img")
+              photo.src = "gameover.gif" // albo .png / .jpg
+              photo.style.width = "200px"
+             const container = document.getElementById("game-over-container")
+            container.innerHTML = "" // czyści stare rzeczy
+            container.appendChild(photo)
+            
         }
     }, 1000)
 }
@@ -138,8 +146,5 @@ function checkWin() {
     infoBar.style.visibility = 'hidden'
     gameGrid.style.opacity = '0'
     winMessage.classList.remove('hidden')
-    
-      
-        
     }
 }
