@@ -60,11 +60,34 @@ h2{
     margin: 8px;
     cursor: pointer;
     font-family: var(--font);
+    font-size:1.5rem;
 }
 
 .diffBtn:hover {
     background: var(--button);
     color: white;
+}
+#playerName {
+    background: rgba(255, 255, 255, 0.15);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 20px;
+    padding: 10px 20px;
+    color: var(--font-menu);
+    font-family: var(--font);
+    font-size: 1em;
+    text-align: center;
+    outline: none;
+    margin: 10px 0;
+    width: 250px;
+}
+
+#playerName::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+#playerName:focus {
+    border-color: var(--button);
+    background: rgba(255, 255, 255, 0.2);
 }
 #restartBtn{
     background-color: var(--button);
@@ -193,7 +216,6 @@ background: var(--win-message);
     padding: 60px;
      font-size: 1.2em;
     width: 500px;
-    height: 350px;
     position: fixed;
     top: 20%;
     left: 50%;;
@@ -201,6 +223,7 @@ background: var(--win-message);
     z-index: 100;
     align-items: center;
     justify-content: center;
+       overflow: visible;
 }
 #win-message h2 {
     font-size: 2.5em;
@@ -210,6 +233,19 @@ background: var(--win-message);
 #win-message p {
     font-size: 1.3em;
     margin-bottom: 10px;
+}
+#leaderboard-list {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0;
+}
+
+#leaderboard-list li {
+    padding: 8px;
+    margin: 5px 0;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: var(--border-radius);
+    font-size: 1em;
 }
 #game-over{
 background: var(--win-message);
@@ -239,13 +275,15 @@ background: var(--win-message);
     margin-bottom: 10px;
 }
 footer {
-    position: absolute;
+  
     bottom: 0;
     width: 100%;
     padding: 20px;
     color: var(--font-menu);
     font-size: 0.9em;
     opacity: 0.7;
+    
+   
 }
 .hidden{
     display: none;

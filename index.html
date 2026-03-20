@@ -16,28 +16,28 @@
     <h2>Wybierz poziom trudności</h2><br>
     <button class="diffBtn" data-size="4">4x4 — Łatwy </button>
     <button class="diffBtn" data-size="6">6x6 — Średni </button>
-    <button class="diffBtn" data-size="8">8x8 — Trudny </button>
+    <button class="diffBtn" data-size="8">8x8 — Trudny </button><br>
+    <input type="text" id="playerName" placeholder="Wpisz swoje imię">
 </div>
 
     <div id="info-bar" class="hidden">
         <div id="timer">Czas: 0s</div>
         <div id="tries">Próby: 0</div>
     </div>
-
-    <div id="game-grid" class="hidden" ></div>
+    <div id="game-grid" class="hidden" >
+    </div>
     <div id="game-over" class="hidden">
     <h2>Game-over! ⏰</h2>
-    
     <button id="restartBtnGameOver">Zagraj ponownie</button>
-</div>
-   
+ </div>
    <div id="win-message" class="hidden">
     <h2>Wygrałeś! 🎉</h2>
     <p id="win-time">Czas: </p>
     <p id="win-tries">Próby: </p>
+     <h3>🏆 Top 5</h3>
+    <ol id="leaderboard-list"></ol><br>
     <button id="restartBtn">Zagraj ponownie</button>
 </div>
-<div id="win-message" class="hidden"></div>
 <footer>
   <p>Gra Memory – ZS3 Ruda Śląska  Atlanq093  © 2026 </p>
 </footer>

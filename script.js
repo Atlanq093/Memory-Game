@@ -31,7 +31,8 @@ const images = [
     "imagines/img19.png",
     "imagines/img20.png",
 ]
-
+let scores = []
+const playerName = document.getElementById('playerName')
 // === ZMIENNE GRY ===
 let flippedCards = []
 let tries = 0
@@ -121,7 +122,7 @@ function startGame(size){
 
     //TIMER 
     clearInterval(timerInterval)
-    seconds = size === 4 ? 60 : size === 6 ? 120 : 180;
+    seconds = size === 4 ? 60 : size === 6 ? 150 : 200;
     timerEl.innerHTML = `Czas: ${seconds}s`
     timerInterval = setInterval(() => {
         seconds--
@@ -169,10 +170,24 @@ function checkWin() {
     winTriesEl.innerHTML = `Próby: ${tries}`
     gameGrid.style.visibility = 'hidden'
     infoBar.style.visibility = 'hidden'
-    gameGrid.style.opacity = '0'
     winMessage.classList.remove('hidden')
+       scores.push({
+    name: playerName.value || 'Anonim',
+    time: 60 - seconds,
+    tries: tries
+})
+      scores.sort((a, b) => a.time - b.time)
+        const list = document.getElementById('leaderboard-list')
+        list.innerHTML = ''
+        scores.slice(0, 5).forEach((s, i) => {
+            list.innerHTML += `<li>${i+1}. ${s.name} — ${s.time}s — ${s.tries} prób</li>`
+        })
     }
 }
+ 
+
+
+
 //restart button
 restartBtn.addEventListener('click', () => {
     winMessage.classList.add('hidden')
